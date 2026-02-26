@@ -27,9 +27,11 @@ class Player {
     move() {
         this.#x += this.#xSpeed;
         if (this.#x < 0) {
-            console.log("You died :(");
+            state = DIED;
+            this.reset();
         } else if (this.#x > width) {
-            console.log("You win!");
+            state = WIN;
+            this.reset();
         }
     }
 

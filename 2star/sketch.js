@@ -17,11 +17,26 @@ function setup() {
 
 function draw() {
     background(255);
-    drawStart();
-    // thePlayer.draw();
-    // thePlayer.move();
-    // drawWin();
-    // drawDied();
+
+    switch(state){
+
+        case START:
+            drawStart();
+        break;
+
+        case PLAYING:
+            thePlayer.draw();
+            thePlayer.move();
+        break;
+
+        case WIN:
+            drawWin();
+        break;
+
+        case DIED:
+            drawDied();
+        break;
+    }
 }
 
 function keyPressed() {
@@ -33,7 +48,11 @@ function keyPressed() {
             thePlayer.setXSpeed(5);
             break;
         case ENTER:
-            console.log("Enter pressed");
+            if(state == START || state == DIED || state == WIN){
+
+                state = PLAYING;
+            }
+            
             break;
     }
 }
